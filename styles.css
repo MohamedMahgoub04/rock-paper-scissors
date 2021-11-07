@@ -4,4 +4,94 @@
 body{
  background: url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png);
  user-select: none;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+header{
+ /* border: 1px solid black; */
+ margin: auto;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+h1{
+ font-size: 40px;
+}
+
+#stats{
+ width: 20vw;
+ /* border: 1px solid black; */
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ /* padding-bottom: 0; */
+}
+#you, #computer{
+ width: 20vw;
+ /* border: 1px solid black; */
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+ text-align: center;
+ /* padding-bottom: 0; */
+}
+.score{
+ /* border: 1px solid black; */
+ font-size: 50px;
+ margin-top: 0;
+}
+
+main{
+ margin-top: 5em;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ width: 60vw;
+ /* border: 1px solid black; */
+}
+
+@keyframes hover {
+ from{
+  transform: scale(1) translateY(0px);
+ }
+ to{
+  transform: scale(1.1) translateY(-30px);
+ }
+}
+@keyframes unhover {
+ from{
+  transform: scale(1.1) translateY(-30px);
+ }
+ to{
+  transform: scale(1) translateY(0px);
+ }
+}
+
+.moves{
+ height: 200px;
+ /* transform: scale(1) translateY(0px) */
+ /* transition: 1s; */
+ animation: unhover 1s;
+}
+.moves:hover{
+ /* transition: 0.5s; */
+ animation: hover 0.5s forwards;
+ cursor: pointer;
+}
+.moves-divs{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ /* border: 1px solid black; */
+ /* padding: 20px; */
+}
+.moves-divs h3{
+ color: #6c757d;
+ font-family: raleway;
+ font-size: 30px;
 }

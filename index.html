@@ -9,6 +9,35 @@
  <title>Document</title>
 </head>
 <body>
- 
+ <header>
+  <h1>Rock, paper, scissors!</h1>
+  <div id="stats">
+   <div id="you">
+    <h3>You</h3>
+    <h3 class="score">1</h3>
+   </div>
+   <div id="computer">
+    <h3>Computer</h3>
+    <h3 class="score">1</h3>
+   </div>
+  </div>
+ </header>
+ <main>
+  <div id="rock-div" class="moves-divs">
+   <img src="rock-gray.gif" alt="rock" id="rock" class="moves" onmouseover="this.src='rock.gif'"
+    onmouseout="this.src='rock-gray.gif'">
+   <h3>Rock</h3>
+  </div>
+
+  <div id="paper-div" class="moves-divs">
+   <img src="paper-gray.gif" alt="paper" id="paper" class="moves" onmouseover="this.src='paper.gif'" onmouseout="this.src='paper-gray.gif'">
+   <h3>Paper</h3>
+  </div>
+
+  <div id="scissors-div" class="moves-divs">
+   <img src="scissors-gray.gif" alt="scissors" id="scissors" class="moves" onmouseover="this.src='scissors.gif'" onmouseout="this.src='scissors-gray.gif'">
+   <h3>Scissors</h3>
+  </div>
+ </main>
 </body>
 </html>
