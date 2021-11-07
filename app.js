@@ -1,4 +1,4 @@
-const choices = ['rock', 'paper', 'scissors']
+let resultDisplayed = false
 
 function getRandomChoice() {
  min = Math.ceil(0)
@@ -6,84 +6,105 @@ function getRandomChoice() {
  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+function showResults(text, color) {
+ if (!resultDisplayed) {
+  h2 = document.createElement('h2')
+  h2.innerHTML = text
+  document.querySelector('#results').append(h2)
+  document.querySelector('h2').style.color = color
+  resultDisplayed = true
+ } else {
+  document.querySelector('h2').innerHTML = text
+  document.querySelector('h2').style.color = color
+ }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
  // Declaring variables and constants
+ const choices = ['rock', 'paper', 'scissors']
+ const restart = document.querySelector('#reset')
  const rock = document.querySelector('#rock')
  const paper = document.querySelector('#paper')
  const scissors = document.querySelector('#scissors')
  const playerscore = document.querySelector('#playerscore')
  const computerscore = document.querySelector('#computerscore')
- const h2 = document.createElement('h2')
+ // const h2 = document.createElement('h2')
  const result = document.querySelector('#results')
  let playerCounter = 0
  let computerCounter = 0
 
+ // Restart button
+ restart.onclick = () => {
+  playerCounter = 0
+  computerCounter = 0
+  playerscore.innerHTML = 0
+  computerscore.innerHTML = 0
+  document.querySelector('h2').innerHTML = ''
+ }
+
+ // Rock
  rock.onclick = () => {
   let myChoice = choices[0]
   let computerChoice = choices[getRandomChoice()]
-  alert(computerChoice)
   switch (computerChoice) {
    case 'rock':
-    alert('its a tie!')
+    showResults("It's a tie!", 'black')
     break
    case 'paper':
-    alert('You lost! Paper beats rock.')
+    showResults('You lost! Paper beats rock.', 'red')
     computerCounter++
     computerscore.innerHTML = computerCounter
     break
    case 'scissors':
-    alert('You won! Rock beats scissors.')
+    showResults('You won! Rock beats scissors.', 'green')
     playerCounter++
     playerscore.innerHTML = playerCounter
     break
   }
  }
-  paper.onclick = () => {
-   let myChoice = choices[1]
-   let computerChoice = choices[getRandomChoice()]
-   alert(computerChoice)
-   switch (computerChoice) {
-    case 'rock':
-     alert('You won! Paper beats rock.')
-     playerCounter++
-     playerscore.innerHTML = playerCounter
-     break
-    case 'paper':
-     alert("It's a tie!")
-     break
-    case 'scissors':
-     alert('You lost! Scissors beat paper.')
-     computerCounter++
-     computerscore.innerHTML = computerCounter
-     break
-   }
+
+ // Paper
+ paper.onclick = () => {
+  let myChoice = choices[1]
+  let computerChoice = choices[getRandomChoice()]
+  switch (computerChoice) {
+   case 'rock':
+    showResults('You won! Paper beats rock.', 'green')
+    playerCounter++
+    playerscore.innerHTML = playerCounter
+    break
+   case 'paper':
+    showResults("It's a tie!", 'black')
+    break
+   case 'scissors':
+    showResults('You lost! Scissors beat paper.', 'red')
+    computerCounter++
+    computerscore.innerHTML = computerCounter
+    break
   }
-  scissors.onclick = () => {
-   let myChoice = choices[2]
-   let computerChoice = choices[getRandomChoice()]
-   alert(computerChoice)
-   switch (computerChoice) {
-    case 'rock':
-     alert('You lost! Rock beats scissors.')
-     computerCounter++
-     computerscore.innerHTML = computerCounter
-     break
-    case 'paper':
-     alert("You won! Scissors beat paper.")
-     playerCounter++
-     playerscore.innerHTML = playerCounter
-     break
-    case 'scissors':
-     alert("It's a tie!")
-     break
-   }
+ }
+
+ // Scissors
+ scissors.onclick = () => {
+  let myChoice = choices[2]
+  let computerChoice = choices[getRandomChoice()]
+  // alert(computerChoice)
+  switch (computerChoice) {
+   case 'rock':
+    showResults('You lost! Rock beats scissors.', 'red')
+    computerCounter++
+    computerscore.innerHTML = computerCounter
+    break
+   case 'paper':
+    showResults("You won! Scissors beat paper.", 'green')
+    playerCounter++
+    playerscore.innerHTML = playerCounter
+    break
+   case 'scissors':
+    showResults("It's a tie!", 'black')
+    break
   }
-
-  // document.addEventListener('playerCounter == 3 || computerCounter == 3', () => {
-  //  alert('game ova')
-  // })
-
-
+ }
 
 })
