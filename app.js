@@ -1,4 +1,6 @@
 let resultDisplayed = false
+let playerCounter = 0
+let computerCounter = 0
 
 function getRandomChoice() {
  min = Math.ceil(0)
@@ -19,6 +21,36 @@ function showResults(text, color) {
  }
 }
 
+function gameOver() {
+  if (playerscore.innerHTML == 5 || computerscore.innerHTML == 5) {
+    if (playerCounter > computerCounter) {
+      showModal('win')
+    } 
+    if (computerCounter > playerCounter) {
+      showModal('lose')
+    }
+    document.querySelector('#modal-restart').onclick = () => {
+      document.querySelector('#reset').click()
+      hideModal()
+    }
+  }
+}
+
+function showModal(result) {
+  if (result == 'win') {
+    document.querySelector('#modal-result').innerHTML = 'You won!'
+    document.querySelector('#myModal').style.display = 'block'
+    document.querySelector('#modal-content').style.border = '3px solid green'
+  } else if (result == 'lose') {
+    document.querySelector('#modal-result').innerHTML = 'You lose!'
+    document.querySelector('#myModal').style.display = 'block'
+    document.querySelector('#modal-content').style.border = '3px solid red'
+  }
+}
+
+function hideModal() {
+  document.querySelector('#myModal').style.display = 'none'
+}
 
 document.addEventListener('DOMContentLoaded', () => {
  // Declaring variables and constants
@@ -29,10 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
  const scissors = document.querySelector('#scissors')
  const playerscore = document.querySelector('#playerscore')
  const computerscore = document.querySelector('#computerscore')
- // const h2 = document.createElement('h2')
  const result = document.querySelector('#results')
- let playerCounter = 0
- let computerCounter = 0
 
  // Restart button
  restart.onclick = () => {
@@ -62,6 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
     playerscore.innerHTML = playerCounter
     break
   }
+  gameOver()
+  // document.querySelector('#myModal').style.display = 'block'
+  // showModal()
  }
 
  // Paper
@@ -83,13 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     computerscore.innerHTML = computerCounter
     break
   }
+  gameOver()
  }
 
  // Scissors
  scissors.onclick = () => {
   let myChoice = choices[2]
   let computerChoice = choices[getRandomChoice()]
-  // alert(computerChoice)
   switch (computerChoice) {
    case 'rock':
     showResults('You lost! Rock beats scissors.', 'red')
@@ -105,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showResults("It's a tie!", 'black')
     break
   }
+  gameOver()
  }
 
 })
